@@ -12,7 +12,7 @@ async def fetch_url(client: httpx.AsyncClient, url: str, semaphore: asyncio.Sema
     start_time = time.perf_counter()
     try:
         async with semaphore:
-            response = await client.get(url, timeout=30.0)
+            response = await client.get(url, timeout=5.0)
             response.raise_for_status()
         elapsed = time.perf_counter() - start_time
         return elapsed
@@ -98,9 +98,9 @@ def main() -> None:
     parser.add_argument("url", help="Target URL")
     parser.add_argument("-n", type=int, default=100, help="Total number of requests")
     parser.add_argument("-c", "--concurrency", type=int, default=10, help="Concurrency")
-    parser.add_argument("--method", default="GET", help="HTTP method")
-    parser.add_argument("--timeout", type=float, default=10.0, help="Per-request timeout seconds")
-    parser.add_argument("--http2", action="store_true", help="Enable HTTP/2")
+    #parser.add_argument("--method", default="GET", help="HTTP method")
+    #parser.add_argument("--timeout", type=float, default=10.0, help="Per-request timeout seconds")
+    #parser.add_argument("--http2", action="store_true", help="Enable HTTP/2")
     args = parser.parse_args()
 
     asyncio.run(
