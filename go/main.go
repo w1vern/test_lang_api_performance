@@ -5,7 +5,7 @@ import (
   "log"
   "os"
   "time"
-  "runtime"
+  //"runtime"
 
   "github.com/gofiber/fiber/v2"
   "gorm.io/driver/postgres"
@@ -69,7 +69,7 @@ func getTestData(c *fiber.Ctx) error {
 }
 
 func main() {
-  runtime.GOMAXPROCS(1)
+  //runtime.GOMAXPROCS(5)
   initDB()
 
   app := fiber.New(fiber.Config{
